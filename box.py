@@ -24,7 +24,8 @@ def read_points_from_file(file_path):
     return points
 
 # 文件路径
-file_path = r'C:\Users\Administrator\Downloads\新建文件夹 (3)\output_wall.txt'
+file_path = r'新建文件夹 (3)\output_wall.txt'
+
 display, start_display, add_menu, add_function_to_menu = init_display()
 # 确保文件存在
 if not os.path.exists(file_path):
@@ -41,12 +42,14 @@ for i in range(0, len(points), 2):
 clipper = pyclipper.Pyclipper()
 for line in lines:
     clipper.AddPath(line, pyclipper.PT_SUBJECT, False)
+
+#这里就错了
 solution = clipper.Execute(pyclipper.CT_UNION, pyclipper.PFT_NONZERO)
-try:
-    solution = clipper.Execute(pyclipper.CT_UNION, pyclipper.PFT_NONZERO)
-except Exception as e:
-    print("An error occurred:", e)
-    sys.exit(1)
+
+
+
+# try:
+#     solution = clipper.Execute(pyclipper.CT_UNION, pyclipper.PFT_NONZERO)
 # 检查是否读取到点
 # if not points:
 #     raise ValueError("No points found in the file.")
